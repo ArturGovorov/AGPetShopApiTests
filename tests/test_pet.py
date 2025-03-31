@@ -121,12 +121,13 @@ class TestPet:
 
         with allure.step("Отправка запроса на получение информации о питомце по ID"):
             response = requests.get(f"{BASE_URL}/pet/{pet_id}")
+            assert response.status_code == 200
 
         with allure.step("Отправка запроса на обновление питомца"):
             payload = {
                 "id": pet_id,
                 "name": "Buddy Updated",
-                "status": "available"
+                "status": "sold"
             }
             response = requests.put(f"{BASE_URL}/pet", json=payload)
 
@@ -142,11 +143,10 @@ class TestPet:
 
         with allure.step("Отправка запроса на получение информации о питомце по ID"):
             response = requests.get(f"{BASE_URL}/pet/{pet_id}")
+            assert response.status_code == 200
 
         with allure.step("Удаление питомца по ID"):
             response = requests.delete(f"{BASE_URL}/pet/{pet_id}")
-
-        with allure.step("Проверка статуса ответа"):
             assert response.status_code == 200
 
         with allure.step("Отправка запроса на получение информации о питомце по ID"):
