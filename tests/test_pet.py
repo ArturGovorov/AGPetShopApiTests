@@ -115,9 +115,9 @@ class TestPet:
             assert response.json()["id"] == pet_id
 
     @allure.title("Обновление информации о питомце")
-    def test_put(self, put_pet):
+    def test_update(self, update_pet):
         with allure.step("Получение ID созданного питомца"):
-            pet_id = put_pet["id"]
+            pet_id = update_pet["id"]
 
         with allure.step("Отправка запроса на получение информации о питомце по ID"):
             response = requests.get(f"{BASE_URL}/pet/{pet_id}")

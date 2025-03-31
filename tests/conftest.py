@@ -18,8 +18,8 @@ def create_pet():
 
 
 @pytest.fixture(scope="function")
-def put_pet():
-    """Фикстура для создания питомца"""
+def update_pet():
+    """Фикстура для обновления питомца"""
     payload = {
         "id": 1,
         "name": "Buddy",
@@ -31,7 +31,7 @@ def put_pet():
 
 @pytest.fixture(scope="function")
 def delete_pet():
-    """Фикстура для создания питомца"""
+    """Фикстура для удаления питомца"""
     payload = {
         "id": 1,
         "name": "Buddy",
