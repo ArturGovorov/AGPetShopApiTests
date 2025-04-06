@@ -29,6 +29,7 @@ def update_pet():
     assert response.status_code == 200
     return response.json()
 
+
 @pytest.fixture(scope="function")
 def delete_pet():
     """Фикстура для удаления питомца"""
@@ -38,5 +39,35 @@ def delete_pet():
         "status": "available"
     }
     response = requests.post(f"{BASE_URL}/pet", json=payload)
+    assert response.status_code == 200
+    return response.json()
+
+
+@pytest.fixture(scope="function")
+def place_order():
+    """Фикстура для размещения заказа"""
+    payload = {
+        "id": 1,
+        "petId": 1,
+        "quantity": 1,
+        "status": "placed",
+        "complete": True
+    }
+    response = requests.post(f"{BASE_URL}/store/order", json=payload)
+    assert response.status_code == 200
+    return response.json()
+
+
+@pytest.fixture(scope="function")
+def delete_order():
+    """Фикстура для заказа"""
+    payload = {
+        "id": 1,
+        "petId": 1,
+        "quantity": 1,
+        "status": "placed",
+        "complete": True
+    }
+    response = requests.post(f"{BASE_URL}/store/order", json=payload)
     assert response.status_code == 200
     return response.json()
